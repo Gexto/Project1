@@ -1,4 +1,4 @@
-from db_operations import add_user
+from Project1.db_user_operations import add_user
 
 def login(connection):
     username = input("Username: ")
@@ -21,8 +21,6 @@ def register(connection):
     username = input("Enter new username: ")
     password = input("Enter new password: ")
     role = input("Enter role (user/admin): ")
-    
-    # Add input validation here if necessary
     
     add_user(connection, username, password, role)
     print("User registered successfully!")
