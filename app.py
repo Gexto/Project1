@@ -1,19 +1,27 @@
 from db_connection import create_connection
 from user_view import user_menu
 from admin_view import admin_menu
-from auth_controller import login
+from auth_controller import login, register
 
 def main():
     connection = create_connection()
     
-    #user login
-    role = login(connection)
+    while True:
+        print("1. Login")
+        print("2. Register")
+        choice = input("Enter choice: ")
+        
+        if choice == '1':
+            role = login(connection)
+            if role == 'user':
+                user_menu(connection)
+            elif role == 'admin':
+                admin_menu(connection)
+        elif choice == '2':
+            register(connection)
+        else:
+            print("Invalid choice, please try again.")
     
-    if role == 'user':
-        user_menu(connection)
-    elif role == 'admin':
-        admin_menu(connection)
-
     connection.close()
 
 if __name__ == '__main__':
