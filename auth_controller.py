@@ -1,5 +1,6 @@
+from db_operations import add_user
+
 def login(connection):
-    #login
     username = input("Username: ")
     password = input("Password: ")
     
@@ -14,3 +15,13 @@ def login(connection):
     else:
         print("Invalid credentials")
         return None
+
+def register(connection):
+    username = input("Enter new username: ")
+    password = input("Enter new password: ")
+    role = input("Enter role (user/admin): ")
+    
+    # Add input validation here if necessary
+    
+    add_user(connection, username, password, role)
+    print("User registered successfully!")
