@@ -4,3 +4,13 @@ def add_user(connection, username, password, role):
     cursor.execute(add_user_query, (username, password, role))
     connection.commit()
     cursor.close()
+
+#User options operations
+#================================================================================================
+def view_shoes(connection):
+    cursor = connection.cursor()
+    query = "SELECT * FROM Shoes"
+    cursor.execute(query)
+    shoes = cursor.fetchall()
+    cursor.close()
+    return shoes

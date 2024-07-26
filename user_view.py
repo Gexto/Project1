@@ -1,3 +1,5 @@
+from db_operations import view_shoes
+
 def user_menu(connection):
     while True:
         print("1. View Shoes")
@@ -5,7 +7,14 @@ def user_menu(connection):
         print("3. View Order History")
         print("4. Logout")
         choice = input("Enter choice: ")
-        
-        if choice == '4':
+        #=======================================================================================
+        if choice == '1':
+            shoes = view_shoes(connection)
+            print("Available Shoes:")
+            for shoe in shoes:
+                print(f"ID: {shoe[0]}, Brand: {shoe[1]}, Model: {shoe[2]}, Size: {shoe[3]}, Price: {shoe[4]}, Quantity: {shoe[5]}")
+        #=======================================================================================
+        elif choice == '4':
             break
-        # Add more functionality as needed
+        else:
+            print("Invalid choice, please try again.")
