@@ -1,6 +1,6 @@
 from db_operations import view_shoes, purchase_shoes
 
-def user_menu(connection):
+def user_menu(connection, user_id):
     while True:
         print("1. View Shoes")
         print("2. Purchase Shoes")

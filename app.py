@@ -12,9 +12,9 @@ def main():
         choice = input("Enter choice: ")
         
         if choice == '1':
-            role = login(connection)
+            user_id, role = login(connection)
             if role == 'user':
-                user_menu(connection)
+                user_menu(connection, user_id)
             elif role == 'admin':
                 admin_menu(connection)
         elif choice == '2':

@@ -5,16 +5,17 @@ def login(connection):
     password = input("Password: ")
     
     cursor = connection.cursor()
-    query = "SELECT role FROM Users WHERE username=%s AND password=%s"
+    query = "SELECT user_id, role FROM Users WHERE username=%s AND password=%s"
     cursor.execute(query, (username, password))
     result = cursor.fetchone()
     cursor.close()
     
     if result:
-        return result[0]
+        user_id, role = result
+        return user_id, role
     else:
         print("Invalid credentials")
-        return None
+        return None, None
 
 def register(connection):
     username = input("Enter new username: ")
