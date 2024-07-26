@@ -47,3 +47,17 @@ def purchase_shoes(connection, user_id, shoe_id, quantity):
 
     cursor.close()
 #------------------------------------------------------------------------------------------------
+def view_order_history(connection, user_id):
+    cursor = connection.cursor()
+    query = """
+    SELECT Orders.order_id, Orders.order_date, Orders.total_amount, Orders.status,
+           OrderItems.shoe_id, OrderItems.quantity, OrderItems.price
+    FROM Orders
+    JOIN OrderItems ON Orders.order_id = OrderItems.order_id
+    WHERE Orders.user_id = %s
+    ORDER BY Orders.order_date DESC
+    """
+    cursor.execute(query, (user_id,))
+    orders = cursor.fetchall()
+    cursor.close()
+    return orders

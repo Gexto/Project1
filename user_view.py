@@ -1,4 +1,4 @@
-from db_operations import view_shoes, purchase_shoes
+from db_operations import view_shoes, purchase_shoes, view_order_history
 
 def user_menu(connection, user_id):
     while True:
@@ -18,6 +18,12 @@ def user_menu(connection, user_id):
             shoe_id = int(input("Enter shoe ID to purchase: "))
             quantity = int(input("Enter quantity: "))
             purchase_shoes(connection, user_id, shoe_id, quantity)
+        #=======================================================================================
+        elif choice == '3':
+            orders = view_order_history(connection, user_id)
+            print("Order History:")
+            for order in orders:
+                print(f"Order ID: {order[0]}, Date: {order[1]}, Total Amount: {order[2]}, Status: {order[3]}, Shoe ID: {order[4]}, Quantity: {order[5]}, Price: {order[6]}")
         #=======================================================================================
         elif choice == '4':
             break
