@@ -3,7 +3,10 @@ from user_view import user_menu
 from admin_view import admin_menu
 from auth_controller import login, register
 
+from logger import setup_logging
+
 def main():
+    setup_logging()
     connection = create_connection()
     
     while True:

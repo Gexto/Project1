@@ -1,3 +1,5 @@
+import logging
+
 def manage_inventory(connection):
     cursor = connection.cursor()
 
@@ -90,8 +92,10 @@ def manage_users(connection):
             delete_user_query = "DELETE FROM Users WHERE user_id=%s"
             cursor.execute(delete_user_query, (user_id,))
             connection.commit()
+
+            logging.info(f"User with the Id {user_id} deleted from database") #log deleted username
             print("User deleted successfully!")
-            
+
         elif choice == '4':
             view_users_query = "SELECT * FROM Users"
             cursor.execute(view_users_query)
