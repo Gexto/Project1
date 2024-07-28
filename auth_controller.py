@@ -1,4 +1,4 @@
-from Project1.db_user_operations import add_user
+from db_user_operations import add_user
 
 def login(connection):
     username = input("Username: ")

@@ -1,4 +1,4 @@
-from db_operations import view_shoes, purchase_shoes, view_order_history
+from db_user_operations import view_shoes, purchase_shoes, view_order_history
 
 def user_menu(connection, user_id):
     while True:
