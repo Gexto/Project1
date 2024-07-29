@@ -1,3 +1,5 @@
+# Defines a SQL query to create tables and columns with their attributes
+
 def create_users_table(cursor):
     create_table_query = """
     CREATE TABLE Users (

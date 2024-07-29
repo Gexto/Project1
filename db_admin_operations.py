@@ -44,7 +44,7 @@ def manage_inventory(connection):
         elif choice == '4':
             view_shoes_query = "SELECT * FROM Shoes"
             cursor.execute(view_shoes_query)
-            shoes = cursor.fetchall()
+            shoes = cursor.fetchall() #fetches all rows from the result set of the executed query and stores them in the 'shoes' variable as a list of tuples.
             print("All Shoes:")
             for shoe in shoes:
                 print(f"ID: {shoe[0]}, Brand: {shoe[1]}, Model: {shoe[2]}, Size: {shoe[3]}, Price: {shoe[4]}, Quantity: {shoe[5]}")

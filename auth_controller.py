@@ -2,6 +2,7 @@ from db_user_operations import add_user
 
 import logging
 
+#this is how to verify someone's login credintials
 def login(connection):
     username = input("Username: ")
     password = input("Password: ")
@@ -11,16 +12,18 @@ def login(connection):
     cursor.execute(query, (username, password))
     result = cursor.fetchone()
     cursor.close()
-    
+        
+    #checks if a matching user was found
     if result:
-        user_id, role = result
+        user_id, role = result #retrieves user ID and role from the result
         logging.info(f"User {username} logged in as {role}.") #log login is successful
         return user_id, role
     else:
         logging.warning(f"Failed login attempt for username: {username}.") #log failed login
         print("Invalid credentials")
-        return None, None
+        return None, None #returns None for user ID and role if login fails
 
+#how to refister a new person
 def register(connection):
     username = input("Enter new username: ")
     password = input("Enter new password: ")

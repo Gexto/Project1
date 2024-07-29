@@ -1,10 +1,10 @@
 import logging
 
 def add_user(connection, username, password, role):
-    cursor = connection.cursor()
+    cursor = connection.cursor() #creates a cursor object to execute SQL commands
     add_user_query = "INSERT INTO Users (username, password, role) VALUES (%s, %s, %s)"
     cursor.execute(add_user_query, (username, password, role))
-    
+
     connection.commit()
     logging.info(f"User {username} added with role {role}.")  #log user addition
     cursor.close()
@@ -22,14 +22,13 @@ def view_shoes(connection):
 def purchase_shoes(connection, user_id, shoe_id, quantity):
     cursor = connection.cursor()
 
-    #Check if the shoe exists and has enough quantity
-    query = "SELECT price, quantity FROM Shoes WHERE shoe_id = %s"
+    query = "SELECT price, quantity FROM Shoes WHERE shoe_id = %s" #defines a SQL query to check if the shoe exists and retrieve its price and quantity
     cursor.execute(query, (shoe_id,))
-    shoe = cursor.fetchone()
+    shoe = cursor.fetchone()  #fetches the result of the query
     
-    if shoe and shoe[1] >= quantity:
-        price = shoe[0]
-        total_amount = price * quantity
+    if shoe and shoe[1] >= quantity:    #Checks if the shoe exists and if theres enough quantity available for purchase
+        price = shoe[0]                 #gets the price of the shoe
+        total_amount = price * quantity #calculates the total amount for the purchase
 
         #Insert into Orders table
         order_query = "INSERT INTO Orders (user_id, total_amount) VALUES (%s, %s)"
@@ -62,6 +61,6 @@ def view_order_history(connection, user_id):
     ORDER BY Orders.order_date DESC
     """
     cursor.execute(query, (user_id,))
-    orders = cursor.fetchall()
+    orders = cursor.fetchall() #fetches all rows from the executed query
     cursor.close()
     return orders

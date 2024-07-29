@@ -3,15 +3,16 @@ from db_models import create_users_table, create_shoes_table, create_orders_tabl
 
 def initialize_database():
     connection = create_connection()
-    cursor = connection.cursor()
+    cursor = connection.cursor() #create a cursor object to execute sql queries
 
+    #calls functions to create the tables in the database
     create_users_table(cursor)
     create_shoes_table(cursor)
     create_orders_table(cursor)
     create_order_items_table(cursor)
 
     connection.commit()
-    cursor.close()
+    cursor.close() #close the cursor to free up resources
     connection.close()
 
 if __name__ == '__main__':
