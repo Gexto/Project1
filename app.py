@@ -5,13 +5,14 @@ from auth_controller import login, register
 
 from logger import setup_logging
 
+#below is what the program will first show
 def main():
     setup_logging()
     connection = create_connection()
     
     while True:
-        print("1. Login")
-        print("2. Register")
+        print("\n1. Login")
+        print("2. Register\n")
         choice = input("Enter choice: ")
         
         if choice == '1':

@@ -4,11 +4,11 @@ def manage_inventory(connection):
     cursor = connection.cursor()
 
     while True:
-        print("1. Add Shoe")
+        print("\n1. Add Shoe")
         print("2. Update Shoe")
         print("3. Delete Shoe")
         print("4. View All Shoes")
-        print("5. Back to Admin Menu")
+        print("5. Back to Admin Menu\n")
         choice = input("Enter choice: ")
 
         if choice == '1':
@@ -46,9 +46,10 @@ def manage_inventory(connection):
             cursor.execute(view_shoes_query)
             shoes = cursor.fetchall() #fetches all rows from the result set of the executed query and stores them in the 'shoes' variable as a list of tuples.
             print("All Shoes:")
+            print("===============================================================================")
             for shoe in shoes:
                 print(f"ID: {shoe[0]}, Brand: {shoe[1]}, Model: {shoe[2]}, Size: {shoe[3]}, Price: {shoe[4]}, Quantity: {shoe[5]}")
-        
+            print("===============================================================================")
         elif choice == '5':
             break
         else:
@@ -61,11 +62,11 @@ def manage_users(connection):
     cursor = connection.cursor()
 
     while True:
-        print("1. Add User")
+        print("\n1. Add User")
         print("2. Update User")
         print("3. Delete User")
         print("4. View All Users")
-        print("5. Back to Admin Menu")
+        print("5. Back to Admin Menu\n")
         choice = input("Enter choice: ")
 
         if choice == '1':
@@ -101,8 +102,10 @@ def manage_users(connection):
             cursor.execute(view_users_query)
             users = cursor.fetchall()
             print("All Users:")
+            print("===============================================================================")
             for user in users:
                 print(f"ID: {user[0]}, Username: {user[1]}, Role: {user[3]}")
+            print("===============================================================================")
         elif choice == '5':
             break
         else:
@@ -126,5 +129,7 @@ def view_all_orders(connection):
     cursor.close()
 
     print("All Orders:")
+    print("===============================================================================")
     for order in orders:
         print(f"Order ID: {order[0]}, User ID: {order[1]}, Date: {order[2]}, Total Amount: {order[3]}, Status: {order[4]}, Shoe ID: {order[5]}, Quantity: {order[6]}, Price: {order[7]}")
+    print("===============================================================================")

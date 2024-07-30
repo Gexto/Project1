@@ -2,17 +2,19 @@ from db_user_operations import view_shoes, purchase_shoes, view_order_history
 
 def user_menu(connection, user_id):
     while True:
-        print("1. View Shoes")
+        print("\n1. View Shoes")
         print("2. Purchase Shoes")
         print("3. View Order History")
-        print("4. Logout")
+        print("4. Logout\n")
         choice = input("Enter choice: ")
         #=======================================================================================
         if choice == '1':
             shoes = view_shoes(connection)
             print("Available Shoes:")
+            print("===============================================================================")
             for shoe in shoes:
                 print(f"ID: {shoe[0]}, Brand: {shoe[1]}, Model: {shoe[2]}, Size: {shoe[3]}, Price: {shoe[4]}, Quantity: {shoe[5]}")
+            print("===============================================================================")
         #=======================================================================================
         elif choice == '2':
             shoe_id = int(input("Enter shoe ID to purchase: "))
