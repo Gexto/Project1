@@ -3,7 +3,8 @@ from db_admin_operations import manage_inventory, manage_users, view_all_orders
 #this is first thing the admin will see when logged in
 def admin_menu(connection):
     while True:
-        print("\n1. Manage Inventory")
+        print("\nAdmin Menu \n ----------")
+        print("1. Manage Inventory")
         print("2. Manage Users")
         print("3. View All Orders")
         print("4. Logout\n")

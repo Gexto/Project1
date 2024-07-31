@@ -90,12 +90,18 @@ def manage_users(connection):
 
         elif choice == '3':
             user_id = int(input("Enter user ID to delete: "))
-            delete_user_query = "DELETE FROM Users WHERE user_id=%s"
-            cursor.execute(delete_user_query, (user_id,))
-            connection.commit()
+            # Check for related orders
+            cursor.execute("SELECT COUNT(*) FROM Orders WHERE user_id = %s", (user_id,))
+            order_count = cursor.fetchone()[0]
 
-            logging.info(f"User with the Id {user_id} deleted from database") #log deleted username
-            print("User deleted successfully!")
+            if order_count > 0:
+                print("Cannot delete user. User has existing orders.")
+            else:
+                delete_user_query = "DELETE FROM Users WHERE user_id=%s"
+                cursor.execute(delete_user_query, (user_id,))
+                connection.commit()
+                logging.info(f"User with the Id {user_id} deleted from database")
+                print("User deleted successfully!")
 
         elif choice == '4':
             view_users_query = "SELECT * FROM Users"
